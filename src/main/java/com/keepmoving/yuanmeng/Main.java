@@ -11,6 +11,7 @@ public class Main {
 		 */
 		// ApplicationContext
 		// hello.sayHello();
+		
 		ApplicationContext act = new ClassPathXmlApplicationContext("applicationContext.xml");
 		HelloWorld helloWorld = (HelloWorld) act.getBean("helloworld");
 		helloWorld.sayHello();
