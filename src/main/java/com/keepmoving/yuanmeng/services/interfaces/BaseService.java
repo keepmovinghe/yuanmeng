@@ -1,12 +1,16 @@
 package com.keepmoving.yuanmeng.services.interfaces;
 
+import java.util.List;
+
 public interface BaseService {
 
-	public void add();
+	public int add();
 
-	public void update();
+	public int update();
 
-	public void delete();
+	public int delete();
 
-	public void query();
+	public List<Object> query(String statement);
+
+	public List<Object> query(String statement, Object parameters);
 }
