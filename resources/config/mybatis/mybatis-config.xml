@@ -5,9 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="User" type="com.keepmoving.yuanmeng.pojo.User"/>
+		<typeAlias alias="Blog" type="com.keepmoving.yuanmeng.pojo.Blog"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="com/keepmoving/yuanmeng/mappings/user.xml"/>
+		<mapper resource="com/keepmoving/yuanmeng/mappings/blog.xml"/>
 	</mappers>
 </configuration>

@@ -8,7 +8,7 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>resources/config/spring/application-context.xml</config>
-		<config>src/main/java/applicationContext-test.xml</config>
+		<config>resources/config/spring/spring-servlet.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

@@ -6,5 +6,5 @@ public interface UserService extends BaseService{
 
 	public void addUser(User user);
 	
-	public User queryUser(String id);
+	public User queryUser(int id);
 }

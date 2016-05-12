@@ -1,7 +1,5 @@
 package com.keepmoving.yuanmeng.pojo;
 
-import java.util.Date;
-
 /**
  * 用户pojo
  * 
@@ -18,7 +16,7 @@ public class User {
 	private String age;// 年龄
 	private String constellation;// 星座
 	private String avatar;// 职业
-	private Date createdate;// 创建日期
+	private String createdate;// 创建日期
 	private int usertype;// 用户类型
 
 	public int getId() {
@@ -85,11 +83,11 @@ public class User {
 		this.avatar = avatar;
 	}
 
-	public Date getCreatedate() {
+	public String getCreatedate() {
 		return createdate;
 	}
 
-	public void setCreatedate(Date createdate) {
+	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
 

@@ -3,19 +3,17 @@ package com.keepmoving.yuanmeng.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 /**
  * dao实现类
  * @author Administrator
  *
  */
-@Service(value="dbDao")
-@Repository
+
+@Repository(value="dbDao")
 public class DbDaoImpl extends SqlSessionDaoSupport implements DbDao {
 
 	@Override

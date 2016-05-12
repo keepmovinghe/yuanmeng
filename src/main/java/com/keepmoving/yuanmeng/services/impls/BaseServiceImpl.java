@@ -12,24 +12,32 @@ public class BaseServiceImpl implements BaseService {
 	@Resource(name = "dbDao")
 	private DbDao dbDao;
 
-	public int add() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int add(String statement) {
+		return (Integer) dbDao.insert(statement);
+	}
+	
+	public int add(String statement, Object parameters) {
+		return (Integer) dbDao.insert(statement, parameters);
 	}
 
-	public int update() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(String statement) {
+		return this.dbDao.update(statement);
+	}
+	
+	public int update(String statement, Object parameters) {
+		return this.dbDao.update(statement, parameters);
 	}
 
-	public int delete() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int delete(String statement) {
+		return this.dbDao.delect(statement);
+	}
+	
+	public int delete(String statement, Object parameters) {
+		return this.dbDao.delect(statement, parameters);
 	}
 
 	public List<Object> query(String statement) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dbDao.query(statement);
 	}
 
 	public List<Object> query(String statement, Object parameters) {
