@@ -43,6 +43,13 @@ public class BaseServiceImpl implements BaseService {
 	public List<Object> query(String statement, Object parameters) {
 		return this.dbDao.query(statement, parameters);
 	}
-
 	
+	public Object queryOne(String statement) {
+		return this.dbDao.queryOne(statement);
+	}
+
+	public Object queryOne(String statement, Object parameters) {
+		return this.dbDao.queryOne(statement, parameters);
+	}
+
 }

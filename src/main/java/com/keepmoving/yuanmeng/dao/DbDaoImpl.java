@@ -9,11 +9,12 @@ import org.springframework.stereotype.Repository;
 
 /**
  * dao实现类
+ * 
  * @author Administrator
  *
  */
 
-@Repository(value="dbDao")
+@Repository(value = "dbDao")
 public class DbDaoImpl extends SqlSessionDaoSupport implements DbDao {
 
 	@Override
@@ -21,7 +22,15 @@ public class DbDaoImpl extends SqlSessionDaoSupport implements DbDao {
 	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
 		super.setSqlSessionFactory(sqlSessionFactory);
 	}
-	
+
+	public Object queryOne(String statement){
+		return this.getSqlSession().selectOne(statement);
+	}
+
+	public Object queryOne(String statement, Object parameters){
+		return this.getSqlSession().selectOne(statement, parameters);
+	}
+
 	public List<Object> query(String statement) {
 		return this.getSqlSession().selectList(statement);
 	}

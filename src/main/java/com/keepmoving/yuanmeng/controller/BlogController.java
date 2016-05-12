@@ -6,13 +6,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-import org.json.JSONString;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.keepmoving.yuanmeng.pojo.Blog;
 import com.keepmoving.yuanmeng.services.interfaces.BlogService;
+import com.keepmoving.yuanmeng.utils.JSON2Object;
 import com.keepmoving.yuanmeng.utils.Utils;
 
 @Controller
@@ -42,7 +41,7 @@ public class BlogController {
 		blogService.addBlog(blog);
 		status = Utils.SUCCESS;
 
-		result = JSONObject.valueToString("添加成功");
+		result = JSON2Object.toJSONString("添加成功");
 		// 输出json
 		Utils.printWriter(request, response, status, result);
 	}
@@ -62,7 +61,7 @@ public class BlogController {
 		List<Object> blogReult = blogService.queryBlog();
 		status = Utils.SUCCESS;
 
-		result = JSONObject.valueToString(blogReult);
+		result = JSON2Object.toJSONString(blogReult);
 		// 输出json
 		Utils.printWriter(request, response, status, result);
 	}
@@ -81,12 +80,12 @@ public class BlogController {
 
 		if (Utils.isEmpty(String.valueOf(id))) {
 			status = Utils.PARAMETER_NOT_COMPLETE;
-			result = JSONObject.valueToString("微博编号为空");
+			result = JSON2Object.toJSONString("微博编号为空");
 		} else {
 			// 调用删除方法
 			blogService.delBlog(id);
 			status = Utils.SUCCESS;
-			result = JSONObject.valueToString("删除成功");
+			result = JSON2Object.toJSONString("删除成功");
 		}
 		// 输出json
 		Utils.printWriter(request, response, status, result);
@@ -106,12 +105,12 @@ public class BlogController {
 
 		if (Utils.isEmpty(String.valueOf(id))) {
 			status = Utils.PARAMETER_NOT_COMPLETE;
-			result = JSONObject.valueToString("微博编号为空");
+			result = JSON2Object.toJSONString("微博编号为空");
 		} else {
 			// 调用删除方法
 			blogService.updateTransferSend(id);
 			status = Utils.SUCCESS;
-			result = JSONObject.valueToString("更新成功");
+			result = JSON2Object.toJSONString("更新成功");
 		}
 		// 输出json
 		Utils.printWriter(request, response, status, result);
@@ -131,12 +130,12 @@ public class BlogController {
 
 		if (Utils.isEmpty(String.valueOf(id))) {
 			status = Utils.PARAMETER_NOT_COMPLETE;
-			result = JSONObject.valueToString("微博编号为空");
+			result = JSON2Object.toJSONString("微博编号为空");
 		} else {
 			// 调用删除方法
 			blogService.updateClick(id);
 			status = Utils.SUCCESS;
-			result = JSONObject.valueToString("更新成功");
+			result = JSON2Object.toJSONString("更新成功");
 		}
 		// 输出json
 		Utils.printWriter(request, response, status, result);

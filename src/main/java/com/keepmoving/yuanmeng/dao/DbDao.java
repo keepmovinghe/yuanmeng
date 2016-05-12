@@ -10,6 +10,9 @@ import java.util.List;
  */
 public interface DbDao {
 
+	public Object queryOne(String statement);
+	
+	public Object queryOne(String statement, Object parameters);
 	/**
 	 * 无参数查询
 	 * 

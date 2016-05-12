@@ -16,4 +16,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		return (User) this.query("user.selectUser", id).get(0);
 	}
 
+	public User Login(User user) {
+		return (User) this.queryOne("user.login", user);
+	}
+
 }
