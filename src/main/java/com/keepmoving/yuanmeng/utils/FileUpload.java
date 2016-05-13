@@ -94,6 +94,7 @@ public class FileUpload {
 	 */
 	public String upload(HttpServletRequest request, HttpServletResponse response, String uId, String fileType)
 			throws Exception {
+		
 		String servletPath = "/";// request.getServletPath();
 		String realPath = request.getSession().getServletContext().getRealPath(servletPath);
 		this.savePath = new File(realPath) + "\\" + "upload" + "\\" + uId + "\\" + fileType;
@@ -121,7 +122,7 @@ public class FileUpload {
 					}
 					this.fileName = this.getName(this.originalName);
 					// this.type = this.getFileExt(this.fileName);
-					savePath += "/" + this.fileName;
+					savePath += "\\" + this.fileName;
 					BufferedInputStream in = new BufferedInputStream(fis.openStream());
 					FileOutputStream out = new FileOutputStream(new File(savePath));
 					BufferedOutputStream output = new BufferedOutputStream(out);
@@ -134,7 +135,7 @@ public class FileUpload {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return savePath;
+		return savePath.substring(savePath.indexOf("upload"));
 	}
 
 	/**

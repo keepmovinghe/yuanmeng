@@ -165,11 +165,10 @@ public class BlogController {
 	public void queryBlogById(HttpServletRequest request, HttpServletResponse response, int uId) {
 		String status = "\"\"";
 		String result = "";
-
-		// 调用保存方法
+		// 调用查询方法
 		List<Object> blogReult = blogService.queryBlogById(uId);
+		
 		status = Utils.SUCCESS;
-
 		result = JSON2Object.toJSONString(blogReult);
 		// 输出json
 		Utils.printWriter(request, response, status, result);
