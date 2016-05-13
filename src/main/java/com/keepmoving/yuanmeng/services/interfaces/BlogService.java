@@ -21,4 +21,6 @@ public interface BlogService extends BaseService{
 	public int updateTransferSend(int id);
 	
 	public int updateClick(int id);
+	
+	public List<Object> queryBlogById(int uId);
 }

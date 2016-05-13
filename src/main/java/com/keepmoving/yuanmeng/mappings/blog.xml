@@ -19,14 +19,14 @@
 		SELECT 
 		    b.id,
 		    b.u_id uId,
-		    b.content,
-		    b.picture,
+		    IFNULL(b.content,"")content,
+		    IFNULL(b.picture,"")picture,
 		    IFNULL(b.comment, 0) comment,
     		IFNULL(b.transfersend, 0) transfersend,
     		IFNULL(b.click, 0) click,
 		    DATE_FORMAT(b.createtime, '%Y%年%m月%d日 %H:%i') createTime,
-		    u.name,
-		    u.sex
+		    IFNULL(u.name,"")name,
+		    IFNULL(u.sex,"")sex
 		FROM
 		    blog b
 		    left join user u
@@ -43,5 +43,24 @@
 	<update id="updateClick" parameterType="int">
 		update blog set click = click+1 where id=#{id}
 	</update>
+	
 	<!-- 评论 -->
+	
+	
+	<!-- 根据ic查询微博 -->
+	<select id="queryBlogById" parameterType="int" resultType="Blog">
+		SELECT 
+		    b.id,
+		    b.u_id uId,
+		    b.content,
+		    b.picture,
+		    IFNULL(b.comment, 0) comment,
+    		IFNULL(b.transfersend, 0) transfersend,
+    		IFNULL(b.click, 0) click,
+		    DATE_FORMAT(b.createtime, '%Y%年%m月%d日 %H:%i') createTime
+		FROM
+		    blog b
+		WHERE b.u_id=#{uId}    
+		ORDER BY createtime DESC
+	</select>
 </mapper>

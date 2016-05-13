@@ -4,9 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
 	<!-- 查询用户信息 -->
-	<select id="selectUser" parameterType="int" resultType="User">
+	<select id="selectUserById" parameterType="int" resultType="User">
 		select
-			id,phone,name,sex,age,constellation,avatar,usertype
+			id,phone,name,sex,age,constellation,career,avatar,usertype
 		from user where
 		id=#{id}
 	</select>
@@ -14,7 +14,47 @@
 	<!-- 登录 -->
 	<select id="login" parameterType="User" resultType="User">
 		select
-			id,phone,name,sex,age,constellation,avatar,usertype from user where
+			id,phone,name,sex,age,constellation,career,avatar,usertype from user where
 		phone=#{phone} and password=#{password}
+	</select>
+	
+	<!-- 注册保存用户 -->
+	<insert id="addUser" parameterType="User">
+		insert into user(phone,name,password,sex,age,constellation,career,avatar,usertype)
+		values(#{phone},#{name},#{password},#{sex},#{age},#{constellation},#{career},#{avatar},#{usertype})
+	</insert>
+	
+	<!-- 根据手机号查询用户信息 -->
+	<select id="selectUserByPhone" parameterType="String" resultType="User">
+		select
+			id,phone,name,sex,age,constellation,career,avatar,usertype
+		from user where phone=#{phone}
+	</select>
+	
+	<!-- 更新用户信息 -->
+	<update id="updateUser" parameterType="User">
+		update user set name=#{name},sex=#{sex},age=#{age},constellation=#{constellation},career=#{career}
+		where id=#{id}
+	</update>
+	
+	<!-- 查询好友 -->
+	<select id="queryFriend" parameterType="int" resultType="java.util.HashMap">
+		SELECT 
+		    f.id fid,
+		    u.id uid,
+		    IFNULL(u.name,"")name,
+		    IFNULL(u.phone,"")phone,
+		    IFNULL(u.sex,"")sex,
+		    IFNULL(u.age,"")age,
+		    IFNULL(u.constellation,"")constellation,
+		    IFNULL(u.career,"")career,
+		    IFNULL(u.avatar,"")avatar
+		FROM
+		    friend f
+		        LEFT JOIN
+		    user u ON f.friend_id = u.id
+		WHERE
+		    f.my_id = #{uId}
+		ORDER BY u.name
 	</select>
 </mapper>

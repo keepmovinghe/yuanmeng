@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.keepmoving.yuanmeng.pojo.Blog;
 import com.keepmoving.yuanmeng.services.interfaces.BlogService;
+import com.keepmoving.yuanmeng.utils.FileUpload;
 import com.keepmoving.yuanmeng.utils.JSON2Object;
 import com.keepmoving.yuanmeng.utils.Utils;
 
@@ -34,14 +35,27 @@ public class BlogController {
 		String status = "\"\"";
 		String result = "";
 
-		Blog blog = new Blog();
-		blog.setuId(uId);
-		blog.setContent(content);
-		// 调用保存方法
-		blogService.addBlog(blog);
-		status = Utils.SUCCESS;
+		try {
+			// 保存图片
+			FileUpload upload = new FileUpload();
+			String picturePath;
+			picturePath = upload.upload(request, response, String.valueOf(uId), "blog");
 
-		result = JSON2Object.toJSONString("添加成功");
+			Blog blog = new Blog();
+			blog.setuId(uId);
+			blog.setContent(content);
+			blog.setPicture(picturePath);
+			// 调用保存方法
+			blogService.addBlog(blog);
+			status = Utils.SUCCESS;
+
+			result = JSON2Object.toJSONString("添加成功");
+		} catch (Exception e) {
+			status = Utils.SYSTEM_EXCEPTION;
+			result = JSON2Object.toJSONString("添加失败");
+			e.printStackTrace();
+		}
+
 		// 输出json
 		Utils.printWriter(request, response, status, result);
 	}
@@ -137,6 +151,26 @@ public class BlogController {
 			status = Utils.SUCCESS;
 			result = JSON2Object.toJSONString("更新成功");
 		}
+		// 输出json
+		Utils.printWriter(request, response, status, result);
+	}
+
+	/**
+	 * 根据用户ID查询微博
+	 * 
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping("/queryBlogById")
+	public void queryBlogById(HttpServletRequest request, HttpServletResponse response, int uId) {
+		String status = "\"\"";
+		String result = "";
+
+		// 调用保存方法
+		List<Object> blogReult = blogService.queryBlogById(uId);
+		status = Utils.SUCCESS;
+
+		result = JSON2Object.toJSONString(blogReult);
 		// 输出json
 		Utils.printWriter(request, response, status, result);
 	}

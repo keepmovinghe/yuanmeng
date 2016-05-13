@@ -15,7 +15,8 @@ public class User {
 	private String sex;// 性别
 	private String age;// 年龄
 	private String constellation;// 星座
-	private String avatar;// 职业
+	private String career;// 职业
+	private String avatar;// 头像
 	private String createdate;// 创建日期
 	private int usertype;// 用户类型
 
@@ -97,6 +98,14 @@ public class User {
 
 	public void setUsertype(int usertype) {
 		this.usertype = usertype;
+	}
+
+	public String getCareer() {
+		return career;
+	}
+
+	public void setCareer(String career) {
+		this.career = career;
 	}
 
 }

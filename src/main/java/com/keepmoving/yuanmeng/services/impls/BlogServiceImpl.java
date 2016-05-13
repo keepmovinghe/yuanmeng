@@ -31,4 +31,8 @@ public class BlogServiceImpl extends BaseServiceImpl implements BlogService {
 		return this.update("blog.updateClick", id);
 	}
 
+	public List<Object> queryBlogById(int uId) {
+		return this.query("blog.queryBlogById", uId);
+	}
+
 }

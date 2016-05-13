@@ -12,6 +12,6 @@ public class JSON2Object extends JSONObject {
 			SerializerFeature.WriteNullStringAsEmpty};
 	
 	public static String toJSONString(Object arg) {
-		return JSONObject.toJSONString(arg,features);
+		return JSON2Object.toJSONString(arg,features);
 	}
 }
